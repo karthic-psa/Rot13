@@ -18,11 +18,7 @@ import jinja2
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir))
-# form = """<form>
-#     <h2>Add Food</h2>
-#     <input type = "text" name ="food">
-#     <button>Add</button>
-# </form>"""
+
 
 def render_str(template, **params):
         t = jinja_env.get_template(template)
@@ -35,6 +31,16 @@ class BHandler(webapp2.RequestHandler):
     def render(self, template, **kw):
         self.write(render_str(template, **kw))
 
+class Rot13(BHandler):
+    def get(self):
+        self.render("main_page.html")
+
+    def post(self):
+        rot13 = ''
+        text = self.request.get('text')
+        if text:
+            rot13=text.encode('rot13')
+        self.render('main_page.html',text=rot13)
 
 class MainPage(Handler):
     def get(self):
@@ -51,4 +57,5 @@ class MainPage(Handler):
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
+    ('/test/rot13', Rot13)
 ], debug=True)
