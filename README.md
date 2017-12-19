@@ -9,6 +9,6 @@ It is basically a *string translator* based on **Rot13**.
 ## Instructions to run the web app ##
 1. Clone or download the repository and run ```main.py``` 
 **or**
-Visit the [Rot-13 site](https://psk-rot13.appspot.com/rot13) 
+2. Visit the [Rot-13 site](https://psk-rot13.appspot.com/rot13) 
 
 
